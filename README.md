@@ -28,7 +28,7 @@ The following clients must be installed on the machine used to follow this tutor
 Clone this repo:
 
 ```
-git clone https://github.com/kelseyhightower/consul-on-kubernetes.git
+git clone https://github.com/iyacontrol/consul-on-kubernetes.git
 ```
 
 Change into the `consul-on-kubernetes` directory:
@@ -80,7 +80,7 @@ The Consul cluster will be configured using a combination of CLI flags, TLS cert
 Store the gossip encryption key and TLS certificates in a Secret:
 
 ```
-kubectl create secret generic consul \
+kubectl create secret -n sgt generic consul \
   --from-literal="gossip-encryption-key=${GOSSIP_ENCRYPTION_KEY}" \
   --from-file=ca.pem \
   --from-file=consul.pem \
@@ -90,7 +90,7 @@ kubectl create secret generic consul \
 Store the Consul server configuration file in a ConfigMap:
 
 ```
-kubectl create configmap consul --from-file=configs/server.json
+kubectl create configmap -n sgt consul --from-file=configs/server.json
 ```
 
 ### Create the Consul Service
